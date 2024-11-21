@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1mt5eha2xsjq"]
+
+[ext_resource type="FontFile" uid="uid://d0b3edirwo5ge" path="res://fonts/Kenney Future.ttf" id="1_irnjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ul1q"]
+
+[sub_resource type="Theme" id="Theme_yjjcq"]
+default_font = ExtResource("1_irnjx")
+default_font_size = 59
+
+[node name="UnitScorePanel" type="Panel"]
+custom_minimum_size = Vector2(640, 70)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -35.0
+offset_right = 320.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2ul1q")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -35.0
+offset_right = 226.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme = SubResource("Theme_yjjcq")
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "NOM
+"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -35.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_yjjcq")
+theme_override_colors/font_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "000"
+horizontal_alignment = 2

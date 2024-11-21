@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu2mraae000sp"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_hqyr3"]
+[ext_resource type="Texture2D" uid="uid://df0vatifbyaek" path="res://art/Ships/shipGreen_manned.png" id="2_lvtiu"]
+[ext_resource type="Texture2D" uid="uid://brb63tpo3ueh3" path="res://art/Ships/shipBlue_manned.png" id="2_q6x6s"]
+[ext_resource type="Texture2D" uid="uid://rqlf50vhu027" path="res://art/Ships/Engine_exhaust2_frames.png" id="3_82j8q"]
+[ext_resource type="Texture2D" uid="uid://b3534nd55poa1" path="res://art/Ships/Engine_exhaust2 - 1.png" id="3_exyiy"]
+[ext_resource type="Texture2D" uid="uid://bi2226xfex1mq" path="res://art/Ships/shipPink_manned.png" id="4_4tait"]
+[ext_resource type="AudioStream" uid="uid://cldoryfhwhvyg" path="res://Audio/Explosion2.wav" id="7_vgslh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvnuu"]
+size = Vector2(62.8572, 68.5714)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ysnrq"]
+animations = [{
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("3_82j8q")
+}, {
+"duration": 0.3,
+"texture": ExtResource("3_exyiy")
+}],
+"loop": true,
+"name": &"Thrust",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D"]
+position = Vector2(142, 324)
+scale = Vector2(0.7, 0.7)
+collision_mask = 2
+monitoring = false
+script = ExtResource("1_hqyr3")
+
+[node name="BlueShip" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 0.984314, 1, 1)
+position = Vector2(0, 20)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_q6x6s")
+
+[node name="GreenShip" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.486275, 0.984314, 1, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_lvtiu")
+
+[node name="PinkShip" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.486275, 0.984314, 1, 1)
+position = Vector2(0, 15)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_4tait")
+
+[node name="GreenShipHitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 0.714294)
+shape = SubResource("RectangleShape2D_yvnuu")
+disabled = true
+
+[node name="BlueShipHitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1.52588e-05, 11.4286)
+shape = SubResource("RectangleShape2D_yvnuu")
+
+[node name="PinkShipHitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1.52588e-05, 11.4286)
+shape = SubResource("RectangleShape2D_yvnuu")
+disabled = true
+
+[node name="ExhaustSprite" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_ysnrq")
+animation = &"Thrust"
+offset = Vector2(0, 75)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vgslh")
+volume_db = 24.0
+pitch_scale = 0.01

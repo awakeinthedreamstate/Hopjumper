@@ -1,0 +1,237 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckmnnd7y7ibgy"]
+
+[ext_resource type="FontFile" uid="uid://d0b3edirwo5ge" path="res://fonts/Kenney Future.ttf" id="1_5j8hh"]
+[ext_resource type="Script" path="res://hud.gd" id="1_odo5m"]
+
+[sub_resource type="Theme" id="Theme_ju6oh"]
+
+[sub_resource type="Theme" id="Theme_jou4o"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 65
+
+[sub_resource type="Theme" id="Theme_rwxla"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_sgfc3"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 29
+
+[sub_resource type="Theme" id="Theme_4ix0h"]
+
+[sub_resource type="Theme" id="Theme_o46mq"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_1axri"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_fm2qb"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_nfweg"]
+default_font = ExtResource("1_5j8hh")
+default_font_size = 40
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_odo5m")
+high_score_mode = false
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -250.0
+offset_right = 360.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ju6oh")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 7.0
+offset_right = 612.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme = SubResource("Theme_jou4o")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "HIGH SCORErs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -150.0
+offset_right = 340.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScoreLabel" type="Label" parent="."]
+visible = false
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 279.0
+offset_bottom = 70.0
+theme = SubResource("Theme_rwxla")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.541176, 0.717647, 1, 1)
+text = " Score: 0"
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.5
+offset_top = -41.0
+offset_right = 350.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.541176, 0.717647, 1, 1)
+theme_override_fonts/font = ExtResource("1_5j8hh")
+theme_override_font_sizes/font_size = 69
+text = " Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SubMessage" type="Label" parent="."]
+visible = false
+offset_left = 10.0
+offset_top = 611.0
+offset_right = 506.0
+offset_bottom = 648.0
+theme = SubResource("Theme_sgfc3")
+theme_override_colors/font_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "Press Space to Start"
+
+[node name="ScoreDisplay" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4ix0h")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+theme_override_fonts/font = ExtResource("1_5j8hh")
+theme_override_font_sizes/font_size = 50
+text = "Score: 20"
+horizontal_alignment = 3
+
+[node name="HighScoreSelectLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 611.0
+offset_right = 506.0
+offset_bottom = 648.0
+theme = SubResource("Theme_sgfc3")
+theme_override_colors/font_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "Press [h] for high scores"
+
+[node name="NameEntry" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -65.0
+offset_right = 250.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o46mq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "Enter your name"
+horizontal_alignment = 1
+
+[node name="Char1" type="Label" parent="NameEntry"]
+layout_mode = 0
+offset_left = 140.05
+offset_top = 80.0
+offset_right = 213.35
+offset_bottom = 130.0
+theme = SubResource("Theme_1axri")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "_"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Char2" type="Label" parent="NameEntry"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.65
+offset_top = -50.0
+offset_right = 36.65
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_fm2qb")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "_"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Char3" type="Label" parent="NameEntry"]
+layout_mode = 0
+offset_left = 286.65
+offset_top = 80.0
+offset_right = 359.95
+offset_bottom = 130.0
+theme = SubResource("Theme_nfweg")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.054902, 0.878431, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.537255, 1, 1)
+text = "_"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://1lylusdlmv7b"]
+
+[ext_resource type="Script" path="res://Obstacles.gd" id="1_vtrmt"]
+[ext_resource type="Texture2D" uid="uid://cxtbleyrqib3h" path="res://art/Canvas/ObstacleBuilding2.png" id="2_e7lbp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cgoe"]
+radius = 53.0
+height = 474.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8htti"]
+radius = 55.0
+height = 480.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e2hu"]
+size = Vector2(32, 150)
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_vtrmt")
+obstacle_speed = -5
+
+[node name="ObstacleUp" type="Area2D" parent="."]
+position = Vector2(1250, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="ObstacleUp"]
+rotation = 3.14159
+texture = ExtResource("2_e7lbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleUp"]
+shape = SubResource("CapsuleShape2D_4cgoe")
+
+[node name="ObstacleDown" type="Area2D" parent="."]
+position = Vector2(1250, 650)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="ObstacleDown"]
+texture = ExtResource("2_e7lbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDown"]
+shape = SubResource("CapsuleShape2D_8htti")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ScoreCheck" type="Area2D" parent="."]
+position = Vector2(1250, 324)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreCheck"]
+shape = SubResource("RectangleShape2D_2e2hu")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_exited" from="ScoreCheck" to="." method="_on_score_check_area_exited"]

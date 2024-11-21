@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2d6koyvce3ca"]
+
+[ext_resource type="Texture2D" uid="uid://byvtsyoltlg2o" path="res://art/Canvas/Foreground.png" id="1_d5gav"]
+[ext_resource type="Script" path="res://foreground.gd" id="2_hjmly"]
+
+[node name="Foreground" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_d5gav")
+script = ExtResource("2_hjmly")
+foreground_speed = -4

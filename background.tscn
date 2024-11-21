@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ets3se1xikv"]
+
+[ext_resource type="Texture2D" uid="uid://cqer7j1udkfmy" path="res://art/HopJumper Background.png" id="1_2k0d2"]
+[ext_resource type="Script" path="res://background.gd" id="2_qukh3"]
+
+[node name="Background" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2k0d2")
+script = ExtResource("2_qukh3")
+
+[node name="EdgeMarker" type="Marker2D" parent="."]
+position = Vector2(1536, 324)
+gizmo_extents = 22.0

@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://h2rfhsev85u"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_tg2ad"]
+[ext_resource type="PackedScene" uid="uid://bu2mraae000sp" path="res://Player.tscn" id="2_gnk3l"]
+[ext_resource type="PackedScene" uid="uid://1lylusdlmv7b" path="res://Obstacles.tscn" id="3_fwwre"]
+[ext_resource type="PackedScene" uid="uid://d1mt5eha2xsjq" path="res://unit_score_panel.tscn" id="3_j0rpn"]
+[ext_resource type="Script" path="res://ForegroundContainer.gd" id="4_ptp28"]
+[ext_resource type="PackedScene" uid="uid://c2d6koyvce3ca" path="res://foreground.tscn" id="5_fmokf"]
+[ext_resource type="PackedScene" uid="uid://ckmnnd7y7ibgy" path="res://hud.tscn" id="5_ovtpp"]
+[ext_resource type="Script" path="res://MidgroundContainer.gd" id="6_hkr8b"]
+[ext_resource type="PackedScene" uid="uid://c3qytb24flebm" path="res://midground.tscn" id="7_b3iql"]
+[ext_resource type="Texture2D" uid="uid://co2mnmbut33dh" path="res://art/Canvas/Mantle and Moons (1).png" id="8_4cu12"]
+[ext_resource type="Texture2D" uid="uid://516pgd71qk27" path="res://art/Canvas/Stars Up (1).png" id="9_7u4m3"]
+[ext_resource type="Texture2D" uid="uid://dqlbhd0seucd6" path="res://art/Canvas/Stars Down.png" id="10_5hnke"]
+[ext_resource type="Script" path="res://StarsUp.gd" id="10_wxq25"]
+[ext_resource type="Script" path="res://StarsDown.gd" id="12_gp1k6"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_tg2ad")
+obstacle_scene = ExtResource("3_fwwre")
+score_slide_scene = ExtResource("3_j0rpn")
+
+[node name="Player" parent="." instance=ExtResource("2_gnk3l")]
+z_index = 5
+position = Vector2(100, 324)
+monitoring = true
+jump_impulse = 85
+metadata/_edit_group_ = true
+
+[node name="BackgroundContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 648.0
+
+[node name="ForegroundContainer" type="Container" parent="BackgroundContainer"]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 648.0
+script = ExtResource("4_ptp28")
+foreground_scene = ExtResource("5_fmokf")
+
+[node name="MidgroundContainer" type="Container" parent="BackgroundContainer"]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 648.0
+script = ExtResource("6_hkr8b")
+midground_scene = ExtResource("7_b3iql")
+
+[node name="Background" type="TextureRect" parent="BackgroundContainer"]
+z_index = 1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("8_4cu12")
+
+[node name="StarsUp" type="TextureRect" parent="BackgroundContainer"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("9_7u4m3")
+script = ExtResource("10_wxq25")
+
+[node name="StarsDown" type="TextureRect" parent="BackgroundContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("10_5hnke")
+script = ExtResource("12_gp1k6")
+
+[node name="ObstacleContainer" type="Control" parent="."]
+z_index = 4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 648.0
+
+[node name="ObstacleTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="HUD" parent="." instance=ExtResource("5_ovtpp")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="off_done" from="BackgroundContainer/StarsUp" to="BackgroundContainer/StarsUp" method="blink_on"]
+[connection signal="on_done" from="BackgroundContainer/StarsUp" to="BackgroundContainer/StarsUp" method="blink_off"]
+[connection signal="off_done" from="BackgroundContainer/StarsDown" to="BackgroundContainer/StarsDown" method="blink_on"]
+[connection signal="on_done" from="BackgroundContainer/StarsDown" to="BackgroundContainer/StarsDown" method="blink_off"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="countdown_done" from="HUD" to="." method="new_game"]
